@@ -19,6 +19,8 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    [NetAPIClient changeUrl:@"http://httpbin.org"];
+    NetAPIClient.sharedJsonClient.debugMode = YES;
 }
 
 - (void)tearDown {
@@ -40,8 +42,7 @@
 
 - (void)testNetAPIClient {
     XCTestExpectation* expectation = [self expectationWithDescription:@"test network call"];
-    [NetAPIClient changeUrl:@"http://httpbin.org"];
-    [[NetAPIClient sharedJsonClient] requestJsonDataWithPath:@"headers" withParams:nil withMethodType:Get andBlock:^(id data, NSError *error) {
+    [[NetAPIClient sharedJsonClient] requestJsonDataWithPath:@"headers" withParams:@{@"p1":@"abc"} withMethodType:Get andBlock:^(id data, NSError *error) {
         [expectation fulfill];
     }];
     [self waitForExpectations:@[expectation] timeout:10];

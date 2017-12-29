@@ -23,8 +23,8 @@ typedef void(^APICompletion)(id data, NSError* error);
 
 @property (nonatomic, assign) BOOL debugMode;
 
-+ (id)sharedJsonClient;
-+ (id)changeJsonClient;
++ (instancetype)sharedJsonClient;
++ (instancetype)changeJsonClient;
 
 - (void)requestJsonDataWithPath:(NSString *)aPath
                      withParams:(NSDictionary*)params

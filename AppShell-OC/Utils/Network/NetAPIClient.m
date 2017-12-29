@@ -18,18 +18,18 @@
 static NetAPIClient *_sharedClient = nil;
 static dispatch_once_t onceToken;
 
-+ (id)sharedJsonClient {
++ (instancetype)sharedJsonClient {
     dispatch_once(&onceToken, ^{
         _sharedClient = [[NetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/", [self baseURLStr]]]];
     });
     return _sharedClient;
 }
-+ (id)changeJsonClient {
++ (instancetype)changeJsonClient {
     _sharedClient = [[NetAPIClient alloc] initWithBaseURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/", [self baseURLStr]]]];
     return _sharedClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
+- (instancetype)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (!self) {
         return nil;
@@ -48,7 +48,7 @@ static dispatch_once_t onceToken;
     self.securityPolicy.allowInvalidCertificates = YES;
     self.securityPolicy.validatesDomainName = NO;
     
-    self.debugMode = YES;
+    self.debugMode = NO;
     
     return self;
 }
@@ -83,63 +83,36 @@ static dispatch_once_t onceToken;
     }
     //log请求数据
     DebugLog(@"\n===========request===========\nmethod:%@\npath:%@\nparams:%@", kNetworkMethodName[method], aPath, params);
-    aPath = [aPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    aPath = [aPath stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLPathAllowedCharacterSet];
+    __weak typeof(self) weakSelf = self;
     //    发起请求
     switch (method) {
         case Get:{
-            [self GET:aPath parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-                DebugLog(@"\n===========response===========\npath:%@\nresponse:%@", aPath, responseObject);
-                id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(responseObject, error);
-                }else{
-                    block(responseObject, nil);
-                }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                DebugLog(@"\n===========response===========\npath:%@\nerror:%@\nresponse:%@", aPath, error, task.response);
-                block(nil, error);
+            [self GET:aPath parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [weakSelf handleSuccess:task responseObject:responseObject autoShowError:autoShowError completion:block];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [weakSelf handleFailure:task error:error autoShowError:autoShowError completion:block];
             }];
             break;}
         case Post:{
-            [self POST:aPath parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-                DebugLog(@"\n===========response===========\npath:%@\nresponse:%@", aPath, responseObject);
-                id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(nil, error);
-                }else{
-                    block(responseObject, nil);
-                }
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                DebugLog(@"\n===========response===========\npath:%@\nerror:%@\nresponse:%@", aPath, error, task.response);
-                block(nil, error);
+            [self POST:aPath parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [weakSelf handleSuccess:task responseObject:responseObject autoShowError:autoShowError completion:block];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [weakSelf handleFailure:task error:error autoShowError:autoShowError completion:block];
             }];
             break;}
         case Put:{
             [self PUT:aPath parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-                DebugLog(@"\n===========response===========\npath:%@\nresponse:%@", aPath, responseObject);
-                id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(nil, error);
-                }else{
-                    block(responseObject, nil);
-                }
+                [weakSelf handleSuccess:task responseObject:responseObject autoShowError:autoShowError completion:block];
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                DebugLog(@"\n===========response===========\npath:%@\nerror:%@\nresponse:%@", aPath, error, task.response);
-                block(nil, error);
+                [weakSelf handleFailure:task error:error autoShowError:autoShowError completion:block];
             }];
             break;}
         case Delete:{
             [self DELETE:aPath parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-                DebugLog(@"\n===========response===========\npath:%@\nresponse:%@", aPath, responseObject);
-                id error = [self handleResponse:responseObject autoShowError:autoShowError];
-                if (error) {
-                    block(nil, error);
-                }else{
-                    block(responseObject, nil);
-                }
+                [weakSelf handleSuccess:task responseObject:responseObject autoShowError:autoShowError completion:block];
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                DebugLog(@"\n===========response===========\npath:%@\nerror:%@\nresponse:%@", aPath, error, task.response);
-                block(nil, error);
+                [weakSelf handleFailure:task error:error autoShowError:autoShowError completion:block];
             }];
             break;}
         default:
@@ -153,6 +126,21 @@ static dispatch_once_t onceToken;
                  withMethodType:(NetworkMethod)method
                        andBlock:(void (^)(id data, NSError *error))block {
     
+}
+
+- (void)handleSuccess:(NSURLSessionDataTask *)task responseObject:(id)responseObject autoShowError:(BOOL)autoShowError completion:(void (^)(id data, NSError *error))completion{
+    DebugLog(@"\n===========response===========\npath:%@\nresponse:%@", task.originalRequest.URL.relativePath, responseObject);
+    id error = [self handleResponse:responseObject autoShowError:autoShowError];
+    if (error) {
+        completion(nil, error);
+    }else{
+        completion(responseObject, nil);
+    }
+}
+
+- (void)handleFailure:(NSURLSessionDataTask *)task error:(NSError *)error autoShowError:(BOOL)autoShowError completion:(void (^)(id data, NSError *error))completion {
+    DebugLog(@"\n===========response===========\npath:%@\nerror:%@\nresponse:%@", task.originalRequest.URL.relativePath, error.localizedDescription, task.response);
+    completion(nil, error);
 }
 
 - (id)handleResponse:responseObject autoShowError:(BOOL)autoShowError {
@@ -169,7 +157,6 @@ static dispatch_once_t onceToken;
     } else {
         return nil;
     }
-
 }
 
 - (void)startSessionWithToken:(NSString *)token {
