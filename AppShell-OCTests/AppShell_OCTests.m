@@ -7,10 +7,12 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NetAPIClient.h"
+#import "APIManager.h"
+
+#define DebugLog(s, ...) NSLog(@"%s(%d): \n%@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
 
 @interface AppShell_OCTests : XCTestCase {
-    
+    XCTestExpectation* expectation;
 }
 @end
 
@@ -19,8 +21,7 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    [NetAPIClient changeUrl:@"http://httpbin.org"];
-    NetAPIClient.sharedJsonClient.debugMode = YES;
+    expectation = [self expectationWithDescription:@"test network call"];
 }
 
 - (void)tearDown {
@@ -41,11 +42,12 @@
 }
 
 - (void)testNetAPIClient {
-    XCTestExpectation* expectation = [self expectationWithDescription:@"test network call"];
-    [[NetAPIClient sharedJsonClient] requestJsonDataWithPath:@"headers" withParams:@{@"p1":@"abc"} withMethodType:Get andBlock:^(id data, NSError *error) {
+    [APIManager.sharedManager requestWithPath:@"headers" withParams:nil method:Get completion:^(id data, NSError *error) {
+        DebugLog(@"error: %@", error);
         [expectation fulfill];
     }];
-    [self waitForExpectations:@[expectation] timeout:10];
+    [self waitForExpectationsWithTimeout:10 handler:nil];
 }
+
 
 @end

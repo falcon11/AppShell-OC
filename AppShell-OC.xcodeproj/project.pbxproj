@@ -19,6 +19,7 @@
 		F909DFAF1FF47C5800439FEF /* AppShell_OCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFAE1FF47C5800439FEF /* AppShell_OCTests.m */; };
 		F909DFBA1FF47C5900439FEF /* AppShell_OCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFB91FF47C5900439FEF /* AppShell_OCUITests.m */; };
 		F909DFDA1FF4E4F000439FEF /* NetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFD91FF4E4F000439FEF /* NetAPIClient.m */; };
+		F909DFE31FF78CA700439FEF /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFE21FF78CA700439FEF /* APIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,9 @@
 		F909DFBB1FF47C5900439FEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F909DFD81FF4E4EF00439FEF /* NetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetAPIClient.h; sourceTree = "<group>"; };
 		F909DFD91FF4E4F000439FEF /* NetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetAPIClient.m; sourceTree = "<group>"; };
+		F909DFDE1FF6323100439FEF /* NetAPIHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetAPIHeaders.h; sourceTree = "<group>"; };
+		F909DFE11FF78CA700439FEF /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		F909DFE21FF78CA700439FEF /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				F909DFD41FF48F4900439FEF /* Utils */,
+				F909DFDF1FF78C3400439FEF /* Managers */,
 				F909DFCE1FF48B5600439FEF /* Shared */,
 				F909DFCC1FF47E9900439FEF /* Pages */,
 				F909DFCB1FF47E4C00439FEF /* Storyboards */,
@@ -294,6 +299,7 @@
 			children = (
 				F909DFD81FF4E4EF00439FEF /* NetAPIClient.h */,
 				F909DFD91FF4E4F000439FEF /* NetAPIClient.m */,
+				F909DFDE1FF6323100439FEF /* NetAPIHeaders.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -303,6 +309,23 @@
 			children = (
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		F909DFDF1FF78C3400439FEF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F909DFE01FF78C5D00439FEF /* APIManagers */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F909DFE01FF78C5D00439FEF /* APIManagers */ = {
+			isa = PBXGroup;
+			children = (
+				F909DFE11FF78CA700439FEF /* APIManager.h */,
+				F909DFE21FF78CA700439FEF /* APIManager.m */,
+			);
+			path = APIManagers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F909DF9A1FF47C5800439FEF /* ViewController.m in Sources */,
+				F909DFE31FF78CA700439FEF /* APIManager.m in Sources */,
 				F909DFDA1FF4E4F000439FEF /* NetAPIClient.m in Sources */,
 				F909DFA51FF47C5800439FEF /* main.m in Sources */,
 				F909DF971FF47C5800439FEF /* AppDelegate.m in Sources */,

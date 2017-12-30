@@ -7,46 +7,51 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-
-typedef enum {
-    Get = 0,
-    Post,
-    Put,
-    Delete
-} NetworkMethod;
-
-typedef void(^APICompletion)(id data, NSError* error);
+#import "NetAPIHeaders.h"
 
 @interface NetAPIClient : AFHTTPSessionManager
-
-@property (nonatomic, copy) void(^tokenExpiredBlock)(NSError *error);
 
 @property (nonatomic, assign) BOOL debugMode;
 
 + (instancetype)sharedJsonClient;
 + (instancetype)changeJsonClient;
 
-- (void)requestJsonDataWithPath:(NSString *)aPath
-                     withParams:(NSDictionary*)params
-                 withMethodType:(NetworkMethod)method
-                       andBlock:(void (^)(id data, NSError *error))block;
+- (instancetype)initWithBaseURL:(NSURL *)url;
 
+- (void)setHttpRequestHeaders:(NSDictionary *)headers;
+
+/**
+ used to request json data, default auto show error
+
+ @param aPath path
+ @param params a dictionary
+ @param method [get, post, put, delete]
+ @param block callback
+ */
 - (void)requestJsonDataWithPath:(NSString *)aPath
                      withParams:(NSDictionary*)params
                  withMethodType:(NetworkMethod)method
-                  autoShowError:(BOOL)autoShowError
-                       andBlock:(void (^)(id data, NSError *error))block;
+                       completion:(APICompletion)block;
 
 - (void)requestJsonDataWithPath:(NSString *)aPath
                            file:(NSDictionary *)file
                      withParams:(NSDictionary*)params
                  withMethodType:(NetworkMethod)method
-                       andBlock:(void (^)(id data, NSError *error))block;
+                       completion:(void (^)(id data, NSError *error))block;
 
+/**
+ current api server base url
 
-- (void)startSessionWithToken:(NSString *)token;
-
+ @return return the baseUrl set in the info.plist or set through + (void)changeUrl:(NSString *)url
+ */
 + (NSString *)baseURLStr;
+
+
+/**
+ change the server base url
+
+ @param url new server base url, once setted it will overwritter the orignal one and stored in standardUserDefaults
+ */
 + (void)changeUrl:(NSString *)url;
 
 @end
