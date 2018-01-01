@@ -20,6 +20,8 @@
 		F909DFBA1FF47C5900439FEF /* AppShell_OCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFB91FF47C5900439FEF /* AppShell_OCUITests.m */; };
 		F909DFDA1FF4E4F000439FEF /* NetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFD91FF4E4F000439FEF /* NetAPIClient.m */; };
 		F909DFE31FF78CA700439FEF /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFE21FF78CA700439FEF /* APIManager.m */; };
+		F909DFE61FF9DE1300439FEF /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFE51FF9DE1300439FEF /* Logger.m */; };
+		F909DFED1FF9E58000439FEF /* LoggerFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F909DFEC1FF9E58000439FEF /* LoggerFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,12 @@
 		F909DFDE1FF6323100439FEF /* NetAPIHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetAPIHeaders.h; sourceTree = "<group>"; };
 		F909DFE11FF78CA700439FEF /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
 		F909DFE21FF78CA700439FEF /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		F909DFE41FF9DE1300439FEF /* Logger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		F909DFE51FF9DE1300439FEF /* Logger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		F909DFE81FF9E36300439FEF /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F909DFEA1FF9E3C700439FEF /* Managers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Managers.h; sourceTree = "<group>"; };
+		F909DFEB1FF9E58000439FEF /* LoggerFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerFormatter.h; sourceTree = "<group>"; };
+		F909DFEC1FF9E58000439FEF /* LoggerFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoggerFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +163,6 @@
 				F909DFCB1FF47E4C00439FEF /* Storyboards */,
 				F909DFC91FF47CBF00439FEF /* Models */,
 				F909DFC81FF47CA800439FEF /* Extensions */,
-				F909DFCD1FF4843400439FEF /* Foundation */,
 				F909DFC71FF47C8100439FEF /* External */,
 				F909DF951FF47C5800439FEF /* AppDelegate.h */,
 				F909DF961FF47C5800439FEF /* AppDelegate.m */,
@@ -225,13 +232,6 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
-		F909DFCD1FF4843400439FEF /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
 		F909DFCE1FF48B5600439FEF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +280,7 @@
 		F909DFD41FF48F4900439FEF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F909DFE81FF9E36300439FEF /* Utils.h */,
 				F909DFD71FF4C38500439FEF /* Database */,
 				F909DFD61FF4951D00439FEF /* Network */,
 				F909DFD51FF494C500439FEF /* Logger */,
@@ -290,6 +291,10 @@
 		F909DFD51FF494C500439FEF /* Logger */ = {
 			isa = PBXGroup;
 			children = (
+				F909DFE41FF9DE1300439FEF /* Logger.h */,
+				F909DFE51FF9DE1300439FEF /* Logger.m */,
+				F909DFEB1FF9E58000439FEF /* LoggerFormatter.h */,
+				F909DFEC1FF9E58000439FEF /* LoggerFormatter.m */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				F909DFE01FF78C5D00439FEF /* APIManagers */,
+				F909DFEA1FF9E3C700439FEF /* Managers.h */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -618,6 +624,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F909DF9A1FF47C5800439FEF /* ViewController.m in Sources */,
+				F909DFED1FF9E58000439FEF /* LoggerFormatter.m in Sources */,
+				F909DFE61FF9DE1300439FEF /* Logger.m in Sources */,
 				F909DFE31FF78CA700439FEF /* APIManager.m in Sources */,
 				F909DFDA1FF4E4F000439FEF /* NetAPIClient.m in Sources */,
 				F909DFA51FF47C5800439FEF /* main.m in Sources */,

@@ -7,6 +7,7 @@ target 'AppShell-OC' do
 
   # Pods for AppShell-OC
   pod 'AFNetworking', '~> 3.0'
+  pod 'CocoaLumberjack'
 
   target 'AppShell-OCTests' do
     inherit! :search_paths

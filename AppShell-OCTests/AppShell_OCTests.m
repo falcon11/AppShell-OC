@@ -7,7 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "APIManager.h"
+#import "Utils.h"
+#import "Managers.h"
 
 #define DebugLog(s, ...) NSLog(@"%s(%d): \n%@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
 
@@ -21,7 +22,7 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    expectation = [self expectationWithDescription:@"test network call"];
+    [Logger setupLogger];
 }
 
 - (void)tearDown {
@@ -42,11 +43,18 @@
 }
 
 - (void)testNetAPIClient {
+    expectation = [self expectationWithDescription:@"test network call"];
     [APIManager.sharedManager requestWithPath:@"headers" withParams:nil method:Get completion:^(id data, NSError *error) {
         DebugLog(@"error: %@", error);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:10 handler:nil];
+}
+
+- (void)testLogger {
+    DDLogVerbose(@"hello");
+    DDLogDebug(@"debug hello");
+    DDLogError(@"error...");
 }
 
 
