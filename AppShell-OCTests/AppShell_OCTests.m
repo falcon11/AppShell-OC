@@ -8,9 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import "AppPrefixHeader.pch"
-//#import "Utils.h"
-//#import "Managers.h"
-//#import "Extensions.h"
 
 #define DebugLog(s, ...) NSLog(@"%s(%d): \n%@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
 
@@ -47,7 +44,7 @@
 - (void)testNetAPIClient {
     expectation = [self expectationWithDescription:@"test network call"];
     [APIManager.sharedManager requestWithPath:@"headers" withParams:nil method:Get completion:^(id data, NSError *error) {
-        DebugLog(@"error: %@", error);
+        DDLogDebug(@"error: %@", error);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:10 handler:nil];

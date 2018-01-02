@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NetAPIClient.h"
 
 @interface APIManager : NSObject
 
