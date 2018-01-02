@@ -32,6 +32,8 @@
 		F97B8D7C1FFB579B001EF2ED /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B8D7A1FFB579B001EF2ED /* UIColor+expanded.m */; };
 		F97B8D7F1FFB57D6001EF2ED /* UIDevice+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B8D7E1FFB57D5001EF2ED /* UIDevice+Info.m */; };
 		F97B8D851FFB5C24001EF2ED /* NSString+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B8D831FFB5C24001EF2ED /* NSString+Common.m */; };
+		F97B8D8A1FFB86FC001EF2ED /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = F97B8D891FFB86FC001EF2ED /* MBProgressHUD+Add.m */; };
+		F97B8D8C1FFBCB2D001EF2ED /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F97B8D8B1FFBCB2D001EF2ED /* MBProgressHUD.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,9 @@
 		F97B8D841FFB5C24001EF2ED /* NSString+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Common.h"; sourceTree = "<group>"; };
 		F97B8D861FFB5F1F001EF2ED /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
 		F97B8D871FFB643B001EF2ED /* AppPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppPrefixHeader.pch; sourceTree = "<group>"; };
+		F97B8D881FFB86FB001EF2ED /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		F97B8D891FFB86FC001EF2ED /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		F97B8D8B1FFBCB2D001EF2ED /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MBProgressHUD.bundle; path = "AppShell-OC/Extensions/MBProgressHUD.bundle"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +243,8 @@
 		F909DFC81FF47CA800439FEF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F97B8D881FFB86FB001EF2ED /* MBProgressHUD+Add.h */,
+				F97B8D891FFB86FC001EF2ED /* MBProgressHUD+Add.m */,
 				F97B8D841FFB5C24001EF2ED /* NSString+Common.h */,
 				F97B8D831FFB5C24001EF2ED /* NSString+Common.m */,
 				F97B8D7D1FFB57D5001EF2ED /* UIDevice+Info.h */,
@@ -380,6 +387,7 @@
 		F97B8D641FFB5448001EF2ED /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F97B8D8B1FFBCB2D001EF2ED /* MBProgressHUD.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -511,6 +519,7 @@
 			files = (
 				F909DFA21FF47C5800439FEF /* LaunchScreen.storyboard in Resources */,
 				F97B8D731FFB5633001EF2ED /* README.textile in Resources */,
+				F97B8D8C1FFBCB2D001EF2ED /* MBProgressHUD.bundle in Resources */,
 				F909DF9F1FF47C5800439FEF /* Assets.xcassets in Resources */,
 				F909DF9D1FF47C5800439FEF /* Main.storyboard in Resources */,
 			);
@@ -690,6 +699,7 @@
 				F97B8D721FFB5633001EF2ED /* NSDate+Helper.m in Sources */,
 				F909DFE31FF78CA700439FEF /* APIManager.m in Sources */,
 				F909DFDA1FF4E4F000439FEF /* NetAPIClient.m in Sources */,
+				F97B8D8A1FFB86FC001EF2ED /* MBProgressHUD+Add.m in Sources */,
 				F97B8D6B1FFB5625001EF2ED /* NSDate+Common.m in Sources */,
 				F97B8D851FFB5C24001EF2ED /* NSString+Common.m in Sources */,
 				F909DFA51FF47C5800439FEF /* main.m in Sources */,

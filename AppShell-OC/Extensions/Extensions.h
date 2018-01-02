@@ -17,5 +17,6 @@
 #import "UILabel+Common.h"
 #import "NSDate+Common.h"
 #import "NSDate+convenience.h"
+#import "MBProgressHUD+Add.h"
 
 #endif /* Extensions_h */

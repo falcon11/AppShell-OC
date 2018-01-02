@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "AppPrefixHeader.pch"
 
 @interface AppShell_OCUITests : XCTestCase
 
