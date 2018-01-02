@@ -7,8 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Utils.h"
-#import "Managers.h"
+#import "AppPrefixHeader.pch"
+//#import "Utils.h"
+//#import "Managers.h"
+//#import "Extensions.h"
 
 #define DebugLog(s, ...) NSLog(@"%s(%d): \n%@", __FUNCTION__, __LINE__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
 
@@ -56,6 +58,12 @@
     DDLogDebug(@"debug hello");
     DDLogError(@"error...");
     DDLogInfo(@"%@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
+}
+
+- (void)testViewFrame {
+    UIView *v = [UIView new];
+    v.x = 1;
+    DDLogDebug(@"frame:%@", NSStringFromCGRect(v.frame));
 }
 
 
