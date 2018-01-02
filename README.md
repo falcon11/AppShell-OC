@@ -1,6 +1,7 @@
 An app template.
 
 ## Architecture
+```
 AppShell-OC
 ├── AppShell-OC
 │   ├── Assets.xcassets
@@ -24,3 +25,4 @@ AppShell-OC
 │       ├── Database
 │       ├── Logger
 │       └── Network
+```
