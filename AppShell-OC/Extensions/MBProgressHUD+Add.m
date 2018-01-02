@@ -25,8 +25,16 @@
     // 隐藏时候从父控件中移除
     hud.removeFromSuperViewOnHide = YES;
     
-    // 1秒之后再消失
-    [hud hideAnimated:YES afterDelay:0.7];
+    NSTimeInterval delayTime = [MBProgressHUD secondsForShowMessage:text];
+    [hud hideAnimated:YES afterDelay:delayTime];
+}
+
++ (NSTimeInterval)secondsForShowMessage:(NSString *)text {
+    NSTimeInterval seconds = 0;
+    seconds += text.length * 0.1;
+    seconds = MIN(seconds, 5);
+    seconds = MAX(1, seconds);
+    return seconds;
 }
 
 #pragma mark 显示错误信息

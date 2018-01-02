@@ -26,3 +26,11 @@ AppShell-OC
 │       ├── Logger
 │       └── Network
 ```
+
+## Dependencies
+```
+pod 'AFNetworking', '~> 3.0'
+pod 'CocoaLumberjack'
+pod 'Masonry'
+pod 'MBProgressHUD', '~> 1.1.0'
+```
