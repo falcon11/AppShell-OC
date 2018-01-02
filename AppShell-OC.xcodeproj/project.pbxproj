@@ -158,7 +158,7 @@
 			children = (
 				F909DFD41FF48F4900439FEF /* Utils */,
 				F909DFDF1FF78C3400439FEF /* Managers */,
-				F909DFCE1FF48B5600439FEF /* Shared */,
+				F909DFCE1FF48B5600439FEF /* Common */,
 				F909DFCC1FF47E9900439FEF /* Pages */,
 				F909DFCB1FF47E4C00439FEF /* Storyboards */,
 				F909DFC91FF47CBF00439FEF /* Models */,
@@ -232,14 +232,14 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
-		F909DFCE1FF48B5600439FEF /* Shared */ = {
+		F909DFCE1FF48B5600439FEF /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				F909DFD11FF48B9C00439FEF /* Components */,
 				F909DFD01FF48B7600439FEF /* Styles */,
 				F909DFCF1FF48B6E00439FEF /* Services */,
 			);
-			path = Shared;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		F909DFCF1FF48B6E00439FEF /* Services */ = {
