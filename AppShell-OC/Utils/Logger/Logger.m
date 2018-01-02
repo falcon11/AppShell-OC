@@ -15,13 +15,21 @@
     LoggerFormatter *formatter = [LoggerFormatter new];
     DDTTYLogger *ttyLogger = [DDTTYLogger sharedInstance];
     ttyLogger.logFormatter = formatter;
-    [DDLog addLogger:ttyLogger];
+#if DEBUG
+    [DDLog addLogger:ttyLogger withLevel:DDLogLevelVerbose];
+#else
+    [DDLog addLogger:ttyLogger withLevel:DDLogLevelOff];
+#endif
     
     DDFileLogger *filelogger = [[DDFileLogger alloc] init];
     filelogger.rollingFrequency = 60 * 60 * 24;
     filelogger.logFileManager.maximumNumberOfLogFiles = 7;
     filelogger.logFormatter = formatter;
-    [DDLog addLogger:filelogger];
+#if DEBUG
+    [DDLog addLogger:filelogger withLevel:DDLogLevelVerbose];
+#else
+    [DDLog addLogger:filelogger withLevel:DDLogLevelError]
+#endif
 }
 
 @end

@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
-static const DDLogLevel ddLogLevel = DDLogLevelDebug;
+#ifdef DEBUG
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose; // ddLogLevel 注意大小写要一致
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelWarning;
+#endif  /* DEBUG */
 
 @interface Logger : NSObject
 

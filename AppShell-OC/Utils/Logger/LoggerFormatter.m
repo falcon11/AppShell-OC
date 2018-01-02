@@ -12,8 +12,8 @@
 
 - (NSString * _Nullable)formatLogMessage:(nonnull DDLogMessage *)logMessage {
     NSString *levelString = [self levelString:logMessage->_flag];
-    return [NSString stringWithFormat:@"%@ | %@ @ %@ | %@ | %@",
-            [logMessage fileName], logMessage->_function, @(logMessage->_line), levelString, logMessage->_message];
+    return [NSString stringWithFormat:@"%@ | %@ | %@ @ %@ | %@ | %@",
+            logMessage->_timestamp, logMessage->_fileName, logMessage->_function, @(logMessage->_line), levelString, logMessage->_message];
 }
 
 - (NSString *)levelString:(DDLogFlag)flag {

@@ -55,6 +55,7 @@
     DDLogVerbose(@"hello");
     DDLogDebug(@"debug hello");
     DDLogError(@"error...");
+    DDLogInfo(@"%@", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES));
 }
 
 
