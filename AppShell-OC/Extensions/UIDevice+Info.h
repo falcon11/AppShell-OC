@@ -12,4 +12,8 @@
 
 + (NSDictionary *)systemInfoDict;
 
++ (NSString *)appVersion;
+
++ (NSString *)uuid;
+
 @end

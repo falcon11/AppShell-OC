@@ -192,4 +192,14 @@
     NSLog(@"----设备类型---%@",modelNameString);
     return modelNameString;
 }
+
++ (NSString *)appVersion {
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    return [infoDict objectForKey:@"CFBundleShortVersionString"];
+}
+
++ (NSString *)uuid {
+    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+}
+
 @end
